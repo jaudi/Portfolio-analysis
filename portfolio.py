@@ -18,7 +18,6 @@ available_tickers = {
     '^DJI': 'Dow Jones Industrial Average',
     '^IXIC': 'NASDAQ Composite',
     '^RUT': 'Russell 2000',
-    '^VIX': 'CBOE Volatility Index'
 }
 
 # Function to get user-selected tickers
