@@ -13,13 +13,11 @@ available_tickers = {
     '^GSPC': 'S&P 500',
     '^STOXX50E': 'EURO STOXX 50',
     '^FTSE': 'FTSE 100',
-  
-
 }
 
 # Function to get user-selected tickers
 def get_selected_tickers():
-    return st.multiselect("Select four indices for 2 portfolio:", list(available_tickers.keys()), default=list(available_tickers.keys())[:2])
+    return st.multiselect("Select two indices for the portfolio:", list(available_tickers.keys()), default=list(available_tickers.keys())[:2])
 
 selected_tickers = get_selected_tickers()
 
@@ -31,7 +29,7 @@ else:
     def get_weights():
         weights = []
         for ticker in selected_tickers:
-            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01, default=0.25)
+            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01)
             weights.append(weight)
         if sum(weights) == 1:
             return np.array(weights)
@@ -44,12 +42,11 @@ else:
         weights = get_weights()
 
     # Function to get choice of period from user
-  
-
-    options = "1y"
+    period_options = ["1y", "3y", "5y", "10y"]
+    selected_period = st.selectbox("Select the historical data period:", period_options, index=0)
 
     # Download historical prices for the selected period
-    data = yf.download(selected_tickers, period=options)['Adj Close']
+    data = yf.download(selected_tickers, period=selected_period)['Adj Close']
 
     # Calculate daily returns
     returns = data.pct_change().dropna()
@@ -85,6 +82,7 @@ else:
 
     # Plotting Portfolio Allocation
     fig, ax = plt.subplots(figsize=(8, 8))
-    ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
+    ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=['#ff9999', '#66b3ff'])
     ax.set_title('Portfolio Allocation')
     st.pyplot(fig)
+
