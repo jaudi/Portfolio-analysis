@@ -4,4 +4,4 @@ streamlit
 scipy
 numpy
 yfinance
-potly
+plotly
