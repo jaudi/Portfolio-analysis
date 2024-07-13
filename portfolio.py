@@ -18,6 +18,7 @@ available_tickers = {
     '^DJI': 'Dow Jones Industrial Average',
     '^IXIC': 'NASDAQ Composite',
     '^RUT': 'Russell 2000',
+    '^VIX': 'CBOE Volatility Index'
 }
 
 # Function to get user-selected tickers
@@ -30,12 +31,14 @@ selected_tickers = get_selected_tickers()
 if not (1 <= len(selected_tickers) <= 4):
     st.error("Please select between one and four indices.")
 else:
+    # Initialize default weights (you can adjust these defaults as needed)
     default_weights = [0.25] * len(selected_tickers)
+
     # Function to get weights from user
     def get_weights():
         weights = []
-        for ticker in selected_tickers:
-            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01)
+        for i, ticker in enumerate(selected_tickers):
+            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01, value=default_weights[i])
             weights.append(weight)
         if sum(weights) == 1:
             return np.array(weights)
@@ -100,3 +103,4 @@ else:
         ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
         ax.set_title('Portfolio Allocation')
         st.pyplot(fig)
+
