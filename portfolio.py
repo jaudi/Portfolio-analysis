@@ -13,23 +13,19 @@ available_tickers = {
     '^GSPC': 'S&P 500',
     '^STOXX50E': 'EURO STOXX 50',
     '^FTSE': 'FTSE 100',
-    '^N225': 'Nikkei 225',
-    '^HSI': 'Hang Seng Index',
-    '^DJI': 'Dow Jones Industrial Average',
-    '^IXIC': 'NASDAQ Composite',
-    '^RUT': 'Russell 2000',
+  
 
 }
 
 # Function to get user-selected tickers
 def get_selected_tickers():
-    return st.multiselect("Select four indices for your portfolio:", list(available_tickers.keys()), default=list(available_tickers.keys())[:4])
+    return st.multiselect("Select four indices for 2 portfolio:", list(available_tickers.keys()), default=list(available_tickers.keys())[:2])
 
 selected_tickers = get_selected_tickers()
 
 # Check if the correct number of tickers are selected
-if len(selected_tickers) != 4:
-    st.error("Please select exactly four indices.")
+if len(selected_tickers) != 2:
+    st.error("Please select exactly 2 indices.")
 else:
     # Function to get weights from user
     def get_weights():
