@@ -30,6 +30,7 @@ selected_tickers = get_selected_tickers()
 if not (1 <= len(selected_tickers) <= 4):
     st.error("Please select between one and four indices.")
 else:
+    default_weights = [0.25] * len(selected_tickers)
     # Function to get weights from user
     def get_weights():
         weights = []
