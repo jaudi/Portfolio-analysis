@@ -31,7 +31,7 @@ else:
     def get_weights():
         weights = []
         for ticker in selected_tickers:
-            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01)
+            weight = st.number_input(f"Enter weight for {available_tickers[ticker]} ({ticker}):", min_value=0.0, max_value=1.0, step=0.01, default=0.25)
             weights.append(weight)
         if sum(weights) == 1:
             return np.array(weights)
