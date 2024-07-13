@@ -18,7 +18,7 @@ available_tickers = {
     '^DJI': 'Dow Jones Industrial Average',
     '^IXIC': 'NASDAQ Composite',
     '^RUT': 'Russell 2000',
-    '^VIX': 'CBOE Volatility Index'
+
 }
 
 # Function to get user-selected tickers
@@ -48,12 +48,9 @@ else:
         weights = get_weights()
 
     # Function to get choice of period from user
-    def get_choice():
-        options = ["1y", "2y", '5y', '10y', 'ytd']
-        choice = st.selectbox("Choose the time period:", options)
-        return choice
+  
 
-    options = get_choice()
+    options = "1y"
 
     # Download historical prices for the selected period
     data = yf.download(selected_tickers, period=options)['Adj Close']
