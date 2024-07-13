@@ -99,10 +99,25 @@ else:
         st.write(f"Value at Risk (VaR) (Annual): {VaR_annual:.2%}")
 
         # Plotting Portfolio Allocation
-        fig, ax = plt.subplots(figsize=(9, 9))
-        ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
+        # Plotting Portfolio Allocation as a donut chart
+        fig, ax = plt.subplots(figsize=(10, 8))
+        colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99']
+        
+        wedges, texts, autotexts = ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=colors, wedgeprops={'edgecolor': 'black'})
+        
         ax.set_title('Portfolio Allocation')
+        
+        # Draw circle to make it a donut chart
+        centre_circle = plt.Circle((0,0),0.70,fc='white')
+        fig.gca().add_artist(centre_circle)
+        
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax.axis('equal')  
+        plt.tight_layout()
+        
         st.pyplot(fig)
+
+        
         # Explanation of VaR and Sharpe Ratio
         st.markdown("---")
         st.subheader("Definitions")
