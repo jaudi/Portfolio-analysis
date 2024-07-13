@@ -103,17 +103,19 @@ else:
         ax.pie(weights, labels=[available_tickers[ticker] for ticker in selected_tickers], autopct='%1.1f%%', startangle=140, colors=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
         ax.set_title('Portfolio Allocation')
         st.pyplot(fig)
+        # Explanation of VaR and Sharpe Ratio
+        st.markdown("---")
+        st.subheader("Definitions")
+        st.markdown("### Value at Risk (VaR)")
+        st.markdown("Value at Risk (VaR) is a statistical measure used to quantify the level of financial risk within a portfolio over a specified time frame. It estimates the maximum potential loss in value of a portfolio or an investment, under normal market conditions, at a certain confidence level (typically 95% or 99%).")
+        st.markdown("### Sharpe Ratio")
+        st.markdown("Sharpe Ratio is a measure of risk-adjusted return, developed by Nobel laureate William F. Sharpe. It evaluates the performance of an investment (or a portfolio) compared to a risk-free asset, after adjusting for its risk. A higher Sharpe Ratio indicates better risk-adjusted performance.")
 
-     st.markdown("---")
-            st.subheader("Definitions")
-            st.markdown("### Value at Risk (VaR)")
-            st.markdown("Value at Risk (VaR) is a statistical measure used to quantify the level of financial risk within a portfolio over a specified time frame. It estimates the maximum potential loss in value of a portfolio or an investment, under normal market conditions, at a certain confidence level (typically 95% or 99%).")
-            st.markdown("### Sharpe Ratio")
-            st.markdown("Sharpe Ratio is a measure of risk-adjusted return, developed by Nobel laureate William F. Sharpe. It evaluates the performance of an investment (or a portfolio) compared to a risk-free asset, after adjusting for its risk. A higher Sharpe Ratio indicates better risk-adjusted performance.")
+        # Disclaimer
+        st.markdown("---")
+        st.subheader("Disclaimer")
+        st.markdown("""
+        The information presented in this app is for educational and informational purposes only. It is not intended as financial advice or as a recommendation to buy or sell any securities. Investing involves risks, including the potential loss of principal. Past performance does not guarantee future results. Users should conduct their own research and consult with a qualified financial advisor before making investment decisions.
+        """)
+
     
-            # Disclaimer
-            st.markdown("---")
-            st.subheader("Disclaimer")
-            st.markdown("""
-            The information presented in this app is for educational and informational purposes only. It is not intended as financial advice or as a recommendation to buy or sell any securities. Investing involves risks, including the potential loss of principal. Past performance does not guarantee future results. Users should conduct their own research and consult with a qualified financial advisor before making investment decisions.
-            """)
